@@ -54,15 +54,7 @@ def createBoard(h, w):
 
 
 def drawCell(cpyBoard, x, y, isStart):
-    global board
-    global cellW
-    global cellH
-    global grid
-    global colorDying
-    global colorBorn
-    global colorEmpty
-    global colorLiving
-    global colorStart
+    global board, cellW, cellH, grid, colorDying, colorBorn, colorEmpty, colorLiving, colorStart
     x1 = x * (cellW + 1) + 2
     y1 = y * (cellH + 1) + 2
     x2 = (x + 1) * (cellW + 1)
@@ -86,15 +78,7 @@ def drawCell(cpyBoard, x, y, isStart):
 
 
 def drawBoard(l):
-    global board
-    global width
-    global height
-    global grid
-    global period
-    global end
-    global pause
-    global generations
-    global genAutoStop
+    global board, width, height, grid, period, end, pause, generations, genAutoStop
     cpyBoard = []
     if not pause and not end and not (generations in genAutoStop):
         for y in range(height):
@@ -112,11 +96,7 @@ def drawBoard(l):
 
 
 def drawBoardStart():
-    global grid
-    global board
-    global end
-    global width
-    global height
+    global grid, board, end, width, height
     cpyBoard = []
     for y in range(height):
         cpyBoard.append([])
@@ -129,9 +109,7 @@ def drawBoardStart():
 
 
 def __action_p(e):
-    global pause
-    global generations
-    global genAutoStop
+    global pause, generations, genAutoStop
     if generations in genAutoStop:
         generations += 1
     else:
@@ -139,9 +117,7 @@ def __action_p(e):
 
 
 def __action_q(e=None):
-    global end
-    global saveBoard
-    global board
+    global end, saveBoard, board
     if saveBoard:
         res = []
         for y in range(len(board)):
@@ -156,8 +132,7 @@ def __action_q(e=None):
 
 
 def __action_enter(e):
-    global start
-    global grid
+    global start, grid
     start = not start
     grid.unbind("<Button-1>")
 
@@ -170,13 +145,7 @@ def __action_echap(e):
 
 
 def __action_clicGauche(clic):
-    global cellW
-    global cellH
-    global board
-    global grid
-    global start
-    global colorDead
-    global colorStart
+    global cellW, cellH, board, grid, start, colorDead, colorStart
     x = clic.x // (cellW + 1)  # x et y contiennent les
     y = clic.y // (cellH + 1)  # coordonnées de la cellule
     if not isInBoard(board, x, y) or start:
@@ -236,27 +205,15 @@ def getGens(l):
         tmp1 = i
         while i < ll and l[i] in "0123456789":
             i += 1
-        if True:#i < ll:
-            try:
-                res.append(int(l[tmp1:i]))
-            except Exception:
-                print("Invalid format string : " + l)
-                return []
+        try:
+            res.append(int(l[tmp1:i]))
+        except Exception:
+            print("Invalid format string : " + l)
+            return []
     return res
 
 def game():
-    global pause
-    global start
-    global replay
-    global grid
-    global board
-    global end
-    global cellH
-    global cellW
-    global width
-    global bgColor
-    global height
-    global generations
+    global pause, start, replay, grid, board, end, cellH, cellW, width, bgColor, height, generations
     replay = False
     start = False
     pause = False
